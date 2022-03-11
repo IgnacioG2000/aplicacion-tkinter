@@ -51,14 +51,46 @@ def dar_alta_empleado():
     ventana.geometry(posicion)
 
     ingresar_datos = Label(ventana, text="Ingrese los datos del nuevo empleado")
-    ingresar_datos.grid(row=0, column=0)
+    ingresar_datos.grid(row=0, column=1)
 
     nombre = Label(ventana, text="Nombre")
-    nombre.grid(row=1, column=0, sticky=W)
+    nombre.grid(row=2, column=1, sticky=W)
     entry_nombre = Entry(ventana)
-    entry_nombre.grid(row=1, column=1)
+    entry_nombre.grid(row=2, column=2)
 
-    # Hacer lo mismo con los otros campos
+    apellido = Label(ventana, text="Apellido")
+    apellido.grid(row=3, column=1, sticky=W)
+    entry_apellido = Entry(ventana)
+    entry_apellido.grid(row=3, column=2)
+
+    direccion = Label(ventana, text="Direccion")
+    direccion.grid(row=4, column=1, sticky=W)
+    entry_direccion = Entry(ventana)
+    entry_direccion.grid(row=4, column=2)
+
+    dni = Label(ventana, text="DNI")
+    dni.grid(row=5, column=1, sticky=W)
+    entry_dni = Entry(ventana)
+    entry_dni.grid(row=5, column=2)
+
+    telefono = Label(ventana, text="Telefono")
+    telefono.grid(row=6, column=1, sticky=W)
+    entry_telefono = Entry(ventana)
+    entry_telefono.grid(row=6, column=2)
+
+    def volver_al_menu():
+        pass
+
+    def alta_empleado():
+        pass
+
+    boton_salir = Button(ventana, text="Salir", command=volver_al_menu)
+    boton_salir.grid(row=8, column=1)
+
+    boton_insertar_empleado = Button(
+        ventana, text="Dar de alta empleado", command=alta_empleado
+    )
+    boton_insertar_empleado.grid(row=8, column=2)
 
 
 def dar_baja_empleado():
