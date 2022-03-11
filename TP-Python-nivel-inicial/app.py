@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.colorchooser import askcolor
+from tkinter.font import *
 
 
 main = Tk()
@@ -63,9 +64,7 @@ boton_modificar_empleado.grid(row=3, column=1)
 def color():
     color_elegido = askcolor(color="#00ff00", title="Elegir color")
     main.configure(bg=color_elegido[1])
-    print(color_elegido)
-
-    return color_elegido
+    bienvenida.configure(bg=color_elegido[1])
 
 
 def tipografia():
