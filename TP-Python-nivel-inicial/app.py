@@ -44,7 +44,21 @@ bienvenida.grid(row=0, column=4)
 
 
 def dar_alta_empleado():
-    pass
+    # El mensaje withdraw() cierra la ventana principal
+    global posicion
+    main.withdraw()
+    ventana = Toplevel()
+    ventana.geometry(posicion)
+
+    ingresar_datos = Label(ventana, text="Ingrese los datos del nuevo empleado")
+    ingresar_datos.grid(row=0, column=0)
+
+    nombre = Label(ventana, text="Nombre")
+    nombre.grid(row=1, column=0, sticky=W)
+    entry_nombre = Entry(ventana)
+    entry_nombre.grid(row=1, column=1)
+
+    # Hacer lo mismo con los otros campos
 
 
 def dar_baja_empleado():
@@ -72,19 +86,19 @@ boton_baja_empleado.grid(row=1, column=4)
 boton_consultar_empleado = Button(
     main, text="Consultar empleado", command=consultar_empleado
 )
-boton_consultar_empleado.grid(row=3, column=1)
+boton_consultar_empleado.grid(row=6, column=1)
 
 boton_modificar_empleado = Button(
     main, text="Modificar empleado", command=modificar_empleado
 )
-boton_modificar_empleado.grid(row=3, column=4)
+boton_modificar_empleado.grid(row=6, column=4)
 
 
 ############################ MENU ######################################
 
 
 def color():
-    color_elegido = askcolor(color="#00ff00", title="Elegir color")
+    color_elegido = askcolor(color="#00ff00", title="Cambiar fondo")
     main.configure(bg=color_elegido[1])
     bienvenida.configure(bg=color_elegido[1])
 
@@ -92,7 +106,7 @@ def color():
 menubar = Menu(main)
 
 menu_formato = Menu(menubar, tearoff=0)
-menu_formato.add_command(label="Editar color", command=color)
+menu_formato.add_command(label="Cambiar color de fondo", command=color)
 menu_formato.add_separator()
 menu_formato.add_command(label="Salir", command=main.quit)
 menubar.add_cascade(label="Formato", menu=menu_formato)
