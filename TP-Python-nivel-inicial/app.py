@@ -5,7 +5,16 @@ from tkinter.messagebox import *
 main = Tk()
 
 main.title("DG S.A.")
-main.geometry("380x400")
+main.geometry("420x500+50+70")
+
+############################ MENSAJE DE BIENVENIDA ######################################
+
+bienvenida = Label(
+    main,
+    text="Bienvenido/a al servicio de administración de empleados de DG S.A.\n\nSeleccione la opción que quiera realizar\n",
+)
+bienvenida.grid(row=0, column=1)
+
 
 ############################ BOTONES ######################################
 
@@ -29,22 +38,22 @@ def consultar_empleado():
 boton_alta_empleado = Button(
     main, text="Dar de alta empleado", command=dar_alta_empleado
 )
-boton_alta_empleado.grid(row=2, column=0)
+boton_alta_empleado.grid(row=1, column=0)
 
 boton_baja_empleado = Button(
     main, text="Dar de baja empleado", command=dar_baja_empleado
 )
-boton_baja_empleado.grid(row=2, column=4)
+boton_baja_empleado.grid(row=1, column=1)
 
 boton_consultar_empleado = Button(
     main, text="Consultar empleado", command=consultar_empleado
 )
-boton_consultar_empleado.grid(row=4, column=0)
+boton_consultar_empleado.grid(row=3, column=0)
 
 boton_modificar_empleado = Button(
     main, text="Modificar empleado", command=modificar_empleado
 )
-boton_modificar_empleado.grid(row=4, column=4)
+boton_modificar_empleado.grid(row=3, column=1)
 
 
 ############################ MENU ######################################
