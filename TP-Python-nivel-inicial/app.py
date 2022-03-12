@@ -158,7 +158,8 @@ def modificar_empleado():
         seleccionar(conexion, var_id.get())
 
         global posicion
-        main.withdraw()
+        global ventana3
+        ventana3.withdraw()
         ventana4 = Toplevel()
         ventana4.geometry(posicion)
 
@@ -230,15 +231,24 @@ def modificar_empleado():
 
 
 def consultar_empleado():
+    global posicion
+    main.withdraw()
+    ventana5 = Toplevel()
+    ventana5.geometry(posicion)
+
     ingresar_id_consulta = Label(
-        ventana3, text="Ingrese el ID del empleado a consultar"
+        ventana5, text="Ingrese el ID del empleado a consultar"
     )
     ingresar_id_consulta.grid(row=0, column=0)
 
     entry_ingresar_id_consulta = Entry(ventana5, textvariable=var_id)
     entry_ingresar_id_consulta.grid(row=0, column=1)
 
-    boton_salir5 = Button(ventana3, text="Salir", command=volver_al_menu)
+    def consultar_empleado():
+        global conexion
+        seleccionar(conexion, var_id.get())
+
+    boton_salir5 = Button(ventana5, text="Salir", command=volver_al_menu)
     boton_salir5.grid(row=1, column=1)
 
     boton_consulta_empleado = Button(
