@@ -6,6 +6,8 @@ from app_crud.creacion_bd import crear_base
 from app_crud.creacion_tabla import crear_tabla
 from app_crud.insertar_empleado import insertar
 from app_crud.borrar_empleado import borrar
+from app_crud.consultar_empleado import seleccionar
+from app_crud.actualizar_empleado import actualizar
 
 main = Tk()
 
@@ -29,7 +31,7 @@ posicion = (
 )
 main.geometry(posicion)
 
-fontfamilylist = list(tkFont.families())
+# fontfamilylist = list(tkFont.families())
 
 # fontindex = 0
 
@@ -66,8 +68,8 @@ def volver_al_menu():
 
 
 def dar_alta_empleado():
-    # El mensaje withdraw() cierra la ventana principal
     global posicion
+    # El mensaje withdraw() cierra la ventana principal
     main.withdraw()
     ventana = Toplevel()
     ventana.geometry(posicion)
@@ -77,27 +79,27 @@ def dar_alta_empleado():
 
     nombre = Label(ventana, text="Nombre")
     nombre.grid(row=2, column=1, sticky=W)
-    entry_nombre = Entry(ventana)
+    entry_nombre = Entry(ventana, textvariable=var_nombre)
     entry_nombre.grid(row=2, column=2)
 
     apellido = Label(ventana, text="Apellido")
     apellido.grid(row=3, column=1, sticky=W)
-    entry_apellido = Entry(ventana)
+    entry_apellido = Entry(ventana, textvariable=var_apellido)
     entry_apellido.grid(row=3, column=2)
 
     direccion = Label(ventana, text="Direccion")
     direccion.grid(row=4, column=1, sticky=W)
-    entry_direccion = Entry(ventana)
+    entry_direccion = Entry(ventana, textvariable=var_direccion)
     entry_direccion.grid(row=4, column=2)
 
     dni = Label(ventana, text="DNI")
     dni.grid(row=5, column=1, sticky=W)
-    entry_dni = Entry(ventana)
+    entry_dni = Entry(ventana, textvariable=var_dni)
     entry_dni.grid(row=5, column=2)
 
     telefono = Label(ventana, text="Telefono")
     telefono.grid(row=6, column=1, sticky=W)
-    entry_telefono = Entry(ventana)
+    entry_telefono = Entry(ventana, textvariable=var_telefono)
     entry_telefono.grid(row=6, column=2)
 
     def alta_empleado():
@@ -109,7 +111,7 @@ def dar_alta_empleado():
             var_apellido.get(),
             var_direccion.get(),
             var_dni.get(),
-            var_direccion.get(),
+            var_telefono.get(),
         )
 
     boton_salir = Button(ventana, text="Salir", command=volver_al_menu)
@@ -127,10 +129,10 @@ def dar_baja_empleado():
     ventana2 = Toplevel()
     ventana2.geometry(posicion)
 
-    ingresar_id = Label(ventana2, text="Ingrese el ID del empleado a dar de baja")
-    ingresar_id.grid(row=0, column=1)
-    entry_ingresar_id = Entry(ventana2, textvariable=var_id)
-    entry_ingresar_id.grid(row=0, column=2)
+    ingresar_id_baja = Label(ventana2, text="Ingrese el ID del empleado a dar de baja")
+    ingresar_id_baja.grid(row=0, column=1)
+    entry_ingresar_id_baja = Entry(ventana2, textvariable=var_id)
+    entry_ingresar_id_baja.grid(row=0, column=2)
 
     def baja_empleado():
         global conexion
@@ -146,11 +148,103 @@ def dar_baja_empleado():
 
 
 def modificar_empleado():
-    pass
+    global posicion
+    main.withdraw()
+    ventana3 = Toplevel()
+    ventana3.geometry(posicion)
+
+    def busqueda_empleado():
+        global conexion
+        seleccionar(conexion, var_id.get())
+
+        global posicion
+        main.withdraw()
+        ventana4 = Toplevel()
+        ventana4.geometry(posicion)
+
+        ingresar_datos = Label(
+            ventana4, text="Ingrese los datos del empleado a modificar"
+        )
+        ingresar_datos.grid(row=0, column=1)
+
+        nombre = Label(ventana4, text="Nombre")
+        nombre.grid(row=2, column=1, sticky=W)
+        entry_nombre = Entry(ventana4, textvariable=var_nombre)
+        entry_nombre.grid(row=2, column=2)
+
+        apellido = Label(ventana4, text="Apellido")
+        apellido.grid(row=3, column=1, sticky=W)
+        entry_apellido = Entry(ventana4, textvariable=var_apellido)
+        entry_apellido.grid(row=3, column=2)
+
+        direccion = Label(ventana4, text="Direccion")
+        direccion.grid(row=4, column=1, sticky=W)
+        entry_direccion = Entry(ventana4, textvariable=var_direccion)
+        entry_direccion.grid(row=4, column=2)
+
+        dni = Label(ventana4, text="DNI")
+        dni.grid(row=5, column=1, sticky=W)
+        entry_dni = Entry(ventana4, textvariable=var_dni)
+        entry_dni.grid(row=5, column=2)
+
+        telefono = Label(ventana4, text="Telefono")
+        telefono.grid(row=6, column=1, sticky=W)
+        entry_telefono = Entry(ventana4, textvariable=var_telefono)
+        entry_telefono.grid(row=6, column=2)
+
+        def editar_empleado():
+            global conexion
+            actualizar(
+                conexion,
+                var_id.get(),
+                var_nombre.get(),
+                var_apellido.get(),
+                var_direccion.get(),
+                var_dni.get(),
+                var_telefono.get(),
+            )
+
+        boton_salir4 = Button(ventana4, text="Salir", command=volver_al_menu)
+        boton_salir4.grid(row=1, column=1)
+
+        boton_modificacion_empleado = Button(
+            ventana4, text="Modificar empleado", command=editar_empleado
+        )
+        boton_modificacion_empleado.grid(row=1, column=2)
+
+    ingresar_id_modificacion = Label(
+        ventana3, text="Ingrese el ID del empleado a modificar"
+    )
+    ingresar_id_modificacion.grid(row=0, column=0)
+
+    entry_ingresar_id_modificacion = Entry(ventana3, textvariable=var_id)
+    entry_ingresar_id_modificacion.grid(row=0, column=1)
+
+    boton_salir3 = Button(ventana3, text="Salir", command=volver_al_menu)
+    boton_salir3.grid(row=1, column=1)
+
+    boton_modificar_empleado = Button(
+        ventana3, text="Buscar empleado", command=busqueda_empleado
+    )
+    boton_modificar_empleado.grid(row=3, column=0)
 
 
 def consultar_empleado():
-    pass
+    ingresar_id_consulta = Label(
+        ventana3, text="Ingrese el ID del empleado a consultar"
+    )
+    ingresar_id_consulta.grid(row=0, column=0)
+
+    entry_ingresar_id_consulta = Entry(ventana5, textvariable=var_id)
+    entry_ingresar_id_consulta.grid(row=0, column=1)
+
+    boton_salir5 = Button(ventana3, text="Salir", command=volver_al_menu)
+    boton_salir5.grid(row=1, column=1)
+
+    boton_consulta_empleado = Button(
+        ventana5, text="Buscar empleado", command=consultar_empleado
+    )
+    boton_consulta_empleado.grid(row=3, column=0)
 
 
 boton_alta_empleado = Button(
