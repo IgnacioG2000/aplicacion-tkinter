@@ -5,6 +5,7 @@ import tkinter.font as tkFont
 from app_crud.creacion_bd import crear_base
 from app_crud.creacion_tabla import crear_tabla
 from app_crud.insertar_empleado import insertar
+from app_crud.borrar_empleado import borrar
 
 main = Tk()
 
@@ -47,6 +48,7 @@ var_apellido = StringVar()
 var_direccion = StringVar()
 var_dni = IntVar()
 var_telefono = IntVar()
+var_id = IntVar()
 
 ############################ CREAR BASE DE DATOS ######################################
 
@@ -57,6 +59,10 @@ conexion = crear_base()
 crear_tabla(conexion)
 
 ############################ BOTONES ######################################
+
+
+def volver_al_menu():
+    pass
 
 
 def dar_alta_empleado():
@@ -119,7 +125,27 @@ def dar_alta_empleado():
 
 
 def dar_baja_empleado():
-    pass
+    global posicion
+    main.withdraw()
+    ventana2 = Toplevel()
+    ventana2.geometry(posicion)
+
+    ingresar_id = Label(ventana2, text="Ingrese el ID del empleado a dar de baja")
+    ingresar_id.grid(row=0, column=1)
+    entry_ingresar_id = Entry(ventana2, textvariable=var_id)
+    entry_ingresar_id.grid(row=0, column=2)
+
+    def baja_empleado():
+        global conexion
+        borrar(conexion, var_id.get())
+
+    boton_salir2 = Button(ventana2, text="Salir", command=volver_al_menu)
+    boton_salir2.grid(row=1, column=1)
+
+    boton_borrar_empleado = Button(
+        ventana2, text="Dar de baja empleado", command=baja_empleado
+    )
+    boton_borrar_empleado.grid(row=1, column=2)
 
 
 def modificar_empleado():
