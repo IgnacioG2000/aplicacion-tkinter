@@ -100,9 +100,6 @@ def dar_alta_empleado():
     entry_telefono = Entry(ventana)
     entry_telefono.grid(row=6, column=2)
 
-    def volver_al_menu():
-        pass
-
     def alta_empleado():
         global conexion
 
