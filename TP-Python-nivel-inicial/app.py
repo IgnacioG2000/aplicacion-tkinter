@@ -3,7 +3,7 @@ from tkinter.messagebox import *
 from tkinter.colorchooser import askcolor
 import tkinter.font as tkFont
 from app_crud.creacion_bd import crear_base
-
+from app_crud.creacion_tabla import crear_tabla
 
 main = Tk()
 
@@ -43,6 +43,10 @@ bienvenida.grid(row=0, column=4)
 ############################ CREAR BASE DE DATOS ######################################
 
 conexion = crear_base()
+
+############################ CREAR TABLA ######################################
+
+crear_tabla(conexion)
 
 ############################ BOTONES ######################################
 
