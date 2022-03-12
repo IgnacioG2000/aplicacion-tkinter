@@ -4,6 +4,7 @@ from tkinter.colorchooser import askcolor
 import tkinter.font as tkFont
 from app_crud.creacion_bd import crear_base
 from app_crud.creacion_tabla import crear_tabla
+from app_crud.insertar_empleado import insertar
 
 main = Tk()
 
@@ -39,6 +40,13 @@ bienvenida = Label(
     "\n\nSeleccione la opción que quiera realizar\n",
 )
 bienvenida.grid(row=0, column=4)
+
+############################ VARIABLES ######################################
+var_nombre = StringVar()
+var_apellido = StringVar()
+var_direccion = StringVar()
+var_dni = IntVar()
+var_telefono = IntVar()
 
 ############################ CREAR BASE DE DATOS ######################################
 
@@ -90,7 +98,16 @@ def dar_alta_empleado():
         pass
 
     def alta_empleado():
-        pass
+        global conexion
+
+        insertar(
+            conexion,
+            var_nombre.get(),
+            var_apellido.get(),
+            var_direccion.get(),
+            var_dni.get(),
+            var_direccion.get(),
+        )
 
     boton_salir = Button(ventana, text="Salir", command=volver_al_menu)
     boton_salir.grid(row=8, column=1)
