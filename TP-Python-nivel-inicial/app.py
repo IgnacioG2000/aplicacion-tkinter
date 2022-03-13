@@ -185,7 +185,7 @@ def modificar_empleado():
         seleccionar(conexion, var_id.get())
 
         global posicion
-        global ventana3
+        nonlocal ventana3
         ventana3.withdraw()
         ventana4 = Toplevel()
         ventana4.geometry(posicion)
