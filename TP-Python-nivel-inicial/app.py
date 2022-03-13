@@ -152,7 +152,6 @@ def dar_baja_empleado():
     entry_ingresar_id_baja.grid(row=0, column=2)
 
     def baja_empleado():
-        def baja_empleado():
         global conexion
         if borrar(conexion, var_id.get()):
             showinfo("Alta empleado", "El empleado se dio de baja")
