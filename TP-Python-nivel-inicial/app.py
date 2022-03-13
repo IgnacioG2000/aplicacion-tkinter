@@ -1,13 +1,14 @@
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.colorchooser import askcolor
-import tkinter.font as tkFont
 from app_crud.creacion_bd import crear_base
 from app_crud.creacion_tabla import crear_tabla
 from app_crud.insertar_empleado import insertar
 from app_crud.borrar_empleado import borrar
 from app_crud.consultar_empleado import seleccionar
 from app_crud.actualizar_empleado import actualizar
+
+# import tkinter.font as tkFont
 
 main = Tk()
 
@@ -67,6 +68,11 @@ def volver_al_menu():
     pass
 
 
+"""""" """""" """""" """""" """""" """""" """""" """""" """
+                    ALTA EMPLEADO
+""" """""" """""" """""" """""" """""" """""" """""" """"""
+
+
 def dar_alta_empleado():
     global posicion
     # El mensaje withdraw() cierra la ventana principal
@@ -123,6 +129,17 @@ def dar_alta_empleado():
     boton_insertar_empleado.grid(row=8, column=2)
 
 
+boton_alta_empleado = Button(
+    main, text="Dar de alta empleado", command=dar_alta_empleado
+)
+boton_alta_empleado.grid(row=1, column=1)
+
+
+"""""" """""" """""" """""" """""" """""" """""" """""" """
+                    BAJA EMPLEADO
+""" """""" """""" """""" """""" """""" """""" """""" """"""
+
+
 def dar_baja_empleado():
     global posicion
     main.withdraw()
@@ -145,6 +162,16 @@ def dar_baja_empleado():
         ventana2, text="Dar de baja empleado", command=baja_empleado
     )
     boton_borrar_empleado.grid(row=1, column=2)
+
+
+boton_baja_empleado = Button(
+    main, text="Dar de baja empleado", command=dar_baja_empleado
+)
+boton_baja_empleado.grid(row=1, column=4)
+
+"""""" """""" """""" """""" """""" """""" """""" """""" """
+                MODIFICAR EMPLEADO
+""" """""" """""" """""" """""" """""" """""" """""" """"""
 
 
 def modificar_empleado():
@@ -230,6 +257,16 @@ def modificar_empleado():
     boton_modificar_empleado.grid(row=3, column=0)
 
 
+boton_modificar_empleado = Button(
+    main, text="Modificar empleado", command=modificar_empleado
+)
+boton_modificar_empleado.grid(row=6, column=4)
+
+"""""" """""" """""" """""" """""" """""" """""" """""" """
+                CONSULTAR EMPLEADO
+""" """""" """""" """""" """""" """""" """""" """""" """"""
+
+
 def consultar_empleado():
     global posicion
     main.withdraw()
@@ -257,26 +294,14 @@ def consultar_empleado():
     boton_consulta_empleado.grid(row=3, column=0)
 
 
-boton_alta_empleado = Button(
-    main, text="Dar de alta empleado", command=dar_alta_empleado
-)
-boton_alta_empleado.grid(row=1, column=1)
-
-boton_baja_empleado = Button(
-    main, text="Dar de baja empleado", command=dar_baja_empleado
-)
-boton_baja_empleado.grid(row=1, column=4)
-
 boton_consultar_empleado = Button(
     main, text="Consultar empleado", command=consultar_empleado
 )
 boton_consultar_empleado.grid(row=6, column=1)
 
-boton_modificar_empleado = Button(
-    main, text="Modificar empleado", command=modificar_empleado
-)
-boton_modificar_empleado.grid(row=6, column=4)
-
+"""""" """""" """""" """""" """""" """""" """""" """""" """""" """""" """
+                MOSTRAR TODOS LOS EMPLEADOS
+""" """""" """""" """""" """""" """""" """""" """""" """""" """""" """"""
 
 ############################ MENU ######################################
 
