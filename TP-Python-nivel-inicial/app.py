@@ -152,8 +152,12 @@ def dar_baja_empleado():
     entry_ingresar_id_baja.grid(row=0, column=2)
 
     def baja_empleado():
+        def baja_empleado():
         global conexion
-        borrar(conexion, var_id.get())
+        if borrar(conexion, var_id.get()):
+            showinfo("Alta empleado", "El empleado se dio de baja")
+        else:
+            showwarning("Alta empleado", "No existe un empleado con ese ID")
 
     boton_salir2 = Button(ventana2, text="Salir", command=volver_al_menu)
     boton_salir2.grid(row=1, column=1)
