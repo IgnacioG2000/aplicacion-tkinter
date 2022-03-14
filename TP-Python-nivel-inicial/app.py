@@ -111,14 +111,20 @@ def dar_alta_empleado():
     def alta_empleado():
         global conexion
 
-        insertar(
-            conexion,
-            var_nombre.get(),
-            var_apellido.get(),
-            var_direccion.get(),
-            var_dni.get(),
-            var_telefono.get(),
-        )
+        if askyesno(
+            "Dar de alta empleado", "¿Seguro quiere dar de alta este empleado?"
+        ):
+            if insertar(
+                conexion,
+                var_nombre.get(),
+                var_apellido.get(),
+                var_direccion.get(),
+                var_dni.get(),
+                var_telefono.get(),
+            ):
+                showinfo("Alta empleado", "El empleado se dio de alta")
+            else:
+                showwarning("Alta empleado", "Ya existe un empleado con ese DNI")
 
     boton_salir = Button(ventana, text="Salir", command=volver_al_menu)
     boton_salir.grid(row=8, column=1)
