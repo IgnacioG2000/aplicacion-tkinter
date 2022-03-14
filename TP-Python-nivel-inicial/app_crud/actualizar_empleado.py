@@ -8,3 +8,4 @@ def actualizar(conexion, mi_id, nombre, apellido, direccion, dni, telefono):
     sql = "UPDATE empleados SET nombre=?, apellido=?, direccion=?, dni=?, telefono=? WHERE id=?;"
     cursor.execute(sql, data)
     conexion.commit()
+    return True

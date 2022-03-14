@@ -194,63 +194,72 @@ def modificar_empleado():
 
     def busqueda_empleado():
         global conexion
-        seleccionar(conexion, var_id.get())
 
-        global posicion
-        nonlocal ventana3
-        ventana3.withdraw()
-        ventana4 = Toplevel()
-        ventana4.geometry(posicion)
+        if not seleccionar(conexion, var_id.get()):
+            showwarning("Alta empleado", "No existe un empleado con ese ID")
+        else:
+            global posicion
+            nonlocal ventana3
+            ventana3.withdraw()
+            ventana4 = Toplevel()
+            ventana4.geometry(posicion)
 
-        ingresar_datos = Label(
-            ventana4, text="Ingrese los datos del empleado a modificar"
-        )
-        ingresar_datos.grid(row=0, column=1)
-
-        nombre = Label(ventana4, text="Nombre")
-        nombre.grid(row=2, column=1, sticky=W)
-        entry_nombre = Entry(ventana4, textvariable=var_nombre)
-        entry_nombre.grid(row=2, column=2)
-
-        apellido = Label(ventana4, text="Apellido")
-        apellido.grid(row=3, column=1, sticky=W)
-        entry_apellido = Entry(ventana4, textvariable=var_apellido)
-        entry_apellido.grid(row=3, column=2)
-
-        direccion = Label(ventana4, text="Direccion")
-        direccion.grid(row=4, column=1, sticky=W)
-        entry_direccion = Entry(ventana4, textvariable=var_direccion)
-        entry_direccion.grid(row=4, column=2)
-
-        dni = Label(ventana4, text="DNI")
-        dni.grid(row=5, column=1, sticky=W)
-        entry_dni = Entry(ventana4, textvariable=var_dni)
-        entry_dni.grid(row=5, column=2)
-
-        telefono = Label(ventana4, text="Telefono")
-        telefono.grid(row=6, column=1, sticky=W)
-        entry_telefono = Entry(ventana4, textvariable=var_telefono)
-        entry_telefono.grid(row=6, column=2)
-
-        def editar_empleado():
-            global conexion
-            actualizar(
-                conexion,
-                var_id.get(),
-                var_nombre.get(),
-                var_apellido.get(),
-                var_direccion.get(),
-                var_dni.get(),
-                var_telefono.get(),
+            ingresar_datos = Label(
+                ventana4, text="Ingrese los datos del empleado a modificar"
             )
+            ingresar_datos.grid(row=0, column=1)
 
-        boton_salir4 = Button(ventana4, text="Salir", command=volver_al_menu)
-        boton_salir4.grid(row=1, column=1)
+            nombre = Label(ventana4, text="Nombre")
+            nombre.grid(row=2, column=1, sticky=W)
+            entry_nombre = Entry(ventana4, textvariable=var_nombre)
+            entry_nombre.grid(row=2, column=2)
 
-        boton_modificacion_empleado = Button(
-            ventana4, text="Modificar empleado", command=editar_empleado
-        )
-        boton_modificacion_empleado.grid(row=1, column=2)
+            apellido = Label(ventana4, text="Apellido")
+            apellido.grid(row=3, column=1, sticky=W)
+            entry_apellido = Entry(ventana4, textvariable=var_apellido)
+            entry_apellido.grid(row=3, column=2)
+
+            direccion = Label(ventana4, text="Direccion")
+            direccion.grid(row=4, column=1, sticky=W)
+            entry_direccion = Entry(ventana4, textvariable=var_direccion)
+            entry_direccion.grid(row=4, column=2)
+
+            dni = Label(ventana4, text="DNI")
+            dni.grid(row=5, column=1, sticky=W)
+            entry_dni = Entry(ventana4, textvariable=var_dni)
+            entry_dni.grid(row=5, column=2)
+
+            telefono = Label(ventana4, text="Telefono")
+            telefono.grid(row=6, column=1, sticky=W)
+            entry_telefono = Entry(ventana4, textvariable=var_telefono)
+            entry_telefono.grid(row=6, column=2)
+
+            def editar_empleado():
+                global conexion
+                if askyesno(
+                    "Modificar empleado", "¿Seguro quiere modificar este empleado?"
+                ):
+                    if actualizar(
+                        conexion,
+                        var_id.get(),
+                        var_nombre.get(),
+                        var_apellido.get(),
+                        var_direccion.get(),
+                        var_dni.get(),
+                        var_telefono.get(),
+                    ):
+                        showinfo(
+                            "Modificación empleado",
+                            "El empleado se modificó correctamente",
+                        )
+
+            boton_salir4 = Button(ventana4, text="Salir", command=volver_al_menu)
+            boton_salir4.grid(row=1, column=1)
+
+            boton_modificacion_empleado = Button(
+                ventana4, text="Modificar empleado", command=editar_empleado
+            )
+            boton_modificacion_empleado.grid(row=1, column=2)
 
     ingresar_id_modificacion = Label(
         ventana3, text="Ingrese el ID del empleado a modificar"
