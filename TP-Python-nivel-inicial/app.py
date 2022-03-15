@@ -7,6 +7,7 @@ from app_crud.insertar_empleado import insertar
 from app_crud.borrar_empleado import borrar
 from app_crud.consultar_empleado import seleccionar
 from app_crud.actualizar_empleado import actualizar
+from app_crud.mostrar_empleados import mostrar_todos_los_empleados
 
 # import tkinter.font as tkFont
 
@@ -43,7 +44,7 @@ bienvenida = Label(
     text="Bienvenido/a al servicio de administración de empleados de DG S.A."
     "\n\nSeleccione la opción que quiera realizar\n",
 )
-bienvenida.grid(row=0, column=4)
+bienvenida.grid(row=0, column=2)
 
 ############################ VARIABLES ######################################
 var_nombre = StringVar()
@@ -322,6 +323,16 @@ boton_consultar_empleado.grid(row=6, column=1)
 """""" """""" """""" """""" """""" """""" """""" """""" """""" """""" """
                 MOSTRAR TODOS LOS EMPLEADOS
 """ """""" """""" """""" """""" """""" """""" """""" """""" """""" """"""
+
+
+def mostrar_empleados():
+    mostrar_todos_los_empleados(conexion, main)
+
+
+boton_mostrar_empleados = Button(
+    main, text="Mostrar todos los empleados", command=mostrar_empleados
+)
+boton_mostrar_empleados.grid(row=4, column=2, columnspan=2)
 
 ############################ MENU ######################################
 
