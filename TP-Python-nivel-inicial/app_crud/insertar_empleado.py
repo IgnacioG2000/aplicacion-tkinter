@@ -6,7 +6,7 @@ def insertar(conexion, nombre, apellido, direccion, dni, telefono):
         conexion, dni, "SELECT * FROM empleados WHERE dni = ?;"
     )
 
-    if resultado_query is not None:
+    if len(resultado_query) != 0:
         data_a_dar_alta = (nombre, apellido, direccion, dni, telefono)
         sql = "INSERT INTO empleados(nombre, apellido, direccion, dni, telefono) \
             VALUES(?, ?, ?, ?, ?)"

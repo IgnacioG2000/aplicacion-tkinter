@@ -34,7 +34,7 @@ def existe_empleado(conexion, dato, query):
     data = (dato,)
     sql = query
     cursor.execute(sql, data)
-    return cursor.fetchone()
+    return cursor.fetchall()
 
 
 def centrar_pantalla(ventana):

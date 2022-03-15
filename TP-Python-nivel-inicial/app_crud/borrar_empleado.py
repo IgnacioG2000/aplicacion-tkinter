@@ -7,7 +7,9 @@ def borrar(conexion, mi_id):
         conexion, mi_id, "SELECT * FROM empleados WHERE id = ?;"
     )
 
-    if resultado_query is not None:
+    if len(resultado_query) != 0:
+        cursor = conexion.cursor()
+        data = (mi_id,)
         sql = "DELETE from empleados where id = ?;"
         cursor.execute(sql, data)
         conexion.commit()

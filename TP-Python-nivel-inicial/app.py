@@ -30,6 +30,28 @@ conexion = crear_base()
 
 crear_tabla(conexion)
 
+############################ MENU DESPLEGABLE ######################################
+
+
+def color(ventana):
+    color_elegido = askcolor(color="#00ff00", title="Cambiar fondo")
+    ventana.configure(bg=color_elegido[1])
+
+
+def menu_desplegable(ventana):
+    menubar = Menu(ventana)
+
+    menu_formato = Menu(menubar, tearoff=0)
+    menu_formato.add_command(
+        label="Cambiar color de fondo", command=lambda: color(ventana)
+    )
+    menu_formato.add_separator()
+    menu_formato.add_command(label="Salir", command=ventana.quit)
+    menubar.add_cascade(label="Formato", menu=menu_formato)
+
+    ventana.config(menu=menubar)
+
+
 ############################ BOTONES ######################################
 
 # Funcion global porque hay 4 botones que hacen lo mismo
@@ -49,6 +71,7 @@ def dar_alta_empleado():
     # El mensaje withdraw() cierra la ventana principal
     main.withdraw()
     ventana = Toplevel()
+    menu_desplegable(ventana)
     centrar_pantalla(ventana)
 
     ingresar_datos = Label(ventana, text="Ingrese los datos del nuevo empleado")
@@ -114,6 +137,7 @@ def dar_alta_empleado():
 def dar_baja_empleado():
     main.withdraw()
     ventana2 = Toplevel()
+    menu_desplegable(ventana2)
     centrar_pantalla(ventana2)
 
     ingresar_id_baja = Label(ventana2, text="Ingrese el ID del empleado a dar de baja")
@@ -150,6 +174,7 @@ def dar_baja_empleado():
 def modificar_empleado():
     main.withdraw()
     ventana3 = Toplevel()
+    menu_desplegable(ventana3)
     centrar_pantalla(ventana3)
 
     def busqueda_empleado():
@@ -248,6 +273,7 @@ def modificar_empleado():
 def consultar_empleado():
     main.withdraw()
     ventana5 = Toplevel()
+    menu_desplegable(ventana5)
     centrar_pantalla(ventana5)
 
     ingresar_id_consulta = Label(
@@ -267,12 +293,12 @@ def consultar_empleado():
     boton_salir5 = Button(
         ventana5, text="Salir", command=lambda: volver_al_menu(ventana5)
     )
-    boton_salir5.grid(row=1, column=1)
+    boton_salir5.grid(row=1, column=0)
 
     boton_consulta_empleado = Button(
         ventana5, text="Buscar empleado", command=consultar_empleado
     )
-    boton_consulta_empleado.grid(row=3, column=0)
+    boton_consulta_empleado.grid(row=1, column=1)
 
 
 """""" """""" """""" """""" """""" """""" """""" """""" """""" """""" """
@@ -287,25 +313,6 @@ def mostrar_empleados():
 boton_salir6 = Button(main, text="Salir", command=lambda: volver_al_menu(main))
 boton_salir6.grid(row=1, column=1)
 
-
-############################ MENU DESPLEGABLE ######################################
-
-
-def color():
-    color_elegido = askcolor(color="#00ff00", title="Cambiar fondo")
-    main.configure(bg=color_elegido[1])
-    bienvenida.configure(bg=color_elegido[1])
-
-
-menubar = Menu(main)
-
-menu_formato = Menu(menubar, tearoff=0)
-menu_formato.add_command(label="Cambiar color de fondo", command=color)
-menu_formato.add_separator()
-menu_formato.add_command(label="Salir", command=main.quit)
-menubar.add_cascade(label="Formato", menu=menu_formato)
-
-main.config(menu=menubar)
 
 ############################ MENU PRINCIPAL ######################################
 def menu_principal():
@@ -345,5 +352,6 @@ def menu_principal():
 
 
 menu_principal()
+menu_desplegable(main)
 
 main.mainloop()

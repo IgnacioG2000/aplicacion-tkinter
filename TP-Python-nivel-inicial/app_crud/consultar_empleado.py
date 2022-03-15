@@ -7,7 +7,7 @@ def seleccionar(conexion, mi_id, ventana):
         conexion, mi_id, "SELECT * FROM empleados WHERE id = ?;"
     )
 
-    if resultado_query is not None:
+    if len(resultado_query) != 0:
         armar_tree_view(conexion, ventana, resultado_query)
         return True
     else:
