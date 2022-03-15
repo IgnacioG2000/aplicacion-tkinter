@@ -87,7 +87,7 @@ def dar_alta_empleado():
     entry_apellido = Entry(ventana, textvariable=var_apellido)
     entry_apellido.grid(row=3, column=2)
 
-    direccion = Label(ventana, text="Direccion")
+    direccion = Label(ventana, text="Dirección")
     direccion.grid(row=4, column=1, sticky=W)
     entry_direccion = Entry(ventana, textvariable=var_direccion)
     entry_direccion.grid(row=4, column=2)
@@ -97,7 +97,7 @@ def dar_alta_empleado():
     entry_dni = Entry(ventana, textvariable=var_dni)
     entry_dni.grid(row=5, column=2)
 
-    telefono = Label(ventana, text="Telefono")
+    telefono = Label(ventana, text="Teléfono")
     telefono.grid(row=6, column=1, sticky=W)
     entry_telefono = Entry(ventana, textvariable=var_telefono)
     entry_telefono.grid(row=6, column=2)
@@ -213,7 +213,7 @@ def modificar_empleado():
             entry_dni = Entry(ventana4, textvariable=var_dni)
             entry_dni.grid(row=5, column=2)
 
-            telefono = Label(ventana4, text="Telefono")
+            telefono = Label(ventana4, text="Teléfono")
             telefono.grid(row=6, column=1, sticky=W)
             entry_telefono = Entry(ventana4, textvariable=var_telefono)
             entry_telefono.grid(row=6, column=2)
@@ -310,10 +310,6 @@ def mostrar_empleados():
     mostrar_todos_los_empleados(conexion, main)
 
 
-boton_salir6 = Button(main, text="Salir", command=lambda: volver_al_menu(main))
-boton_salir6.grid(row=1, column=1)
-
-
 ############################ MENU PRINCIPAL ######################################
 def menu_principal():
     main.title("DG S.A.")
@@ -338,17 +334,17 @@ def menu_principal():
     boton_modificar_empleado = Button(
         main, text="Modificar empleado", command=modificar_empleado
     )
-    boton_modificar_empleado.grid(row=6, column=4)
+    boton_modificar_empleado.grid(row=3, column=4)
 
     boton_mostrar_empleados = Button(
         main, text="Mostrar todos los empleados", command=mostrar_empleados
     )
-    boton_mostrar_empleados.grid(row=4, column=2, columnspan=2)
+    boton_mostrar_empleados.grid(row=2, column=2, columnspan=2)
 
     boton_consultar_empleado = Button(
         main, text="Consultar empleado", command=consultar_empleado
     )
-    boton_consultar_empleado.grid(row=6, column=1)
+    boton_consultar_empleado.grid(row=3, column=1)
 
 
 menu_principal()

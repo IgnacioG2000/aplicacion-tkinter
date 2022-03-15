@@ -16,11 +16,11 @@ def armar_tree_view(conexion, ventana, rows):
     tree.heading("#0", text="ID", anchor=CENTER)
     tree.heading("col1", text="Nombre", anchor=CENTER)
     tree.heading("col2", text="Apellido", anchor=CENTER)
-    tree.heading("col3", text="Direccion", anchor=CENTER)
-    tree.heading("col4", text="dni", anchor=CENTER)
-    tree.heading("col5", text="Telefono", anchor=CENTER)
+    tree.heading("col3", text="Dirección", anchor=CENTER)
+    tree.heading("col4", text="DNI", anchor=CENTER)
+    tree.heading("col5", text="Teléfono", anchor=CENTER)
 
-    tree.grid(column=1, row=12, columnspan=5)
+    tree.grid(column=1, row=4, columnspan=5, rowspan=2)
 
     for row in rows:
         tree.insert(
@@ -40,7 +40,7 @@ def existe_empleado(conexion, dato, query):
 def centrar_pantalla(ventana):
 
     ancho_ventana = 700
-    alto_ventana = 300
+    alto_ventana = 400
 
     x_ventana = ventana.winfo_screenwidth() // 2 - ancho_ventana // 2
     y_ventana = ventana.winfo_screenheight() // 2 - alto_ventana // 2
