@@ -1,6 +1,6 @@
 import sqlite3
 from tkinter.messagebox import *
-from app_crud.funciones_aux import centrar_pantalla, armar_tree_view
+from extras.funciones_aux import centrar_pantalla, armar_tree_view
 
 
 def mostrar_todos_los_empleados(conexion, ventana):

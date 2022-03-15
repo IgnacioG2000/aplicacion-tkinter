@@ -1,14 +1,14 @@
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.colorchooser import askcolor
-from app_crud.creacion_bd import crear_base
-from app_crud.creacion_tabla import crear_tabla
+from app_crud.sql_crud.creacion_bd import crear_base
+from app_crud.sql_crud.creacion_tabla import crear_tabla
 from app_crud.insertar_empleado import insertar
 from app_crud.borrar_empleado import borrar
 from app_crud.consultar_empleado import seleccionar
 from app_crud.actualizar_empleado import actualizar
 from app_crud.mostrar_empleados import mostrar_todos_los_empleados
-from app_crud.funciones_aux import centrar_pantalla
+from extras.funciones_aux import centrar_pantalla
 
 # import tkinter.font as tkFont
 

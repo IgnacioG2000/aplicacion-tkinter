@@ -1,5 +1,5 @@
 import sqlite3
-from app_crud.funciones_aux import existe_empleado
+from extras.funciones_aux import existe_empleado
 
 
 def borrar(conexion, mi_id):

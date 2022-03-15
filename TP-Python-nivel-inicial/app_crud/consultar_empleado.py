@@ -1,5 +1,5 @@
 import sqlite3
-from app_crud.funciones_aux import armar_tree_view, existe_empleado
+from extras.funciones_aux import armar_tree_view, existe_empleado
 
 
 def seleccionar(conexion, mi_id, ventana):
