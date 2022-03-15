@@ -2,7 +2,7 @@ import sqlite3
 from tkinter import ttk
 from tkinter import *
 
-
+# TODO: ARREGLAR LOGICA ASQUEROSA
 def mostrar_todos_los_empleados(conexion, ventana):
     cursor = conexion.cursor()
     sql = "SELECT * FROM empleados;"
