@@ -51,4 +51,3 @@ def mostrar_todos_los_empleados(conexion, ventana):
         tree.insert(
             "", END, text=row[0], values=(row[1], row[2], row[3], row[4], row[5])
         )
-        print(row)
