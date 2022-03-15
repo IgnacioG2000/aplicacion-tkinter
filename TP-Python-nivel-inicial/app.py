@@ -196,8 +196,8 @@ def modificar_empleado():
     def busqueda_empleado():
         global conexion
 
-        if not seleccionar(conexion, var_id.get()):
-            showwarning("Alta empleado", "No existe un empleado con ese ID")
+        if not seleccionar(conexion, var_id.get(), main):
+            showwarning("Modificación empleado", "No existe un empleado con ese ID")
         else:
             global posicion
             nonlocal ventana3
@@ -304,7 +304,9 @@ def consultar_empleado():
 
     def consultar_empleado():
         global conexion
-        seleccionar(conexion, var_id.get())
+        nonlocal ventana5
+        if not seleccionar(conexion, var_id.get(), ventana5):
+            showwarning("Consulta empleado", "No existe un empleado con ese ID")
 
     boton_salir5 = Button(ventana5, text="Salir", command=volver_al_menu)
     boton_salir5.grid(row=1, column=1)
