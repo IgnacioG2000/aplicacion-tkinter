@@ -13,38 +13,26 @@ from app_crud.mostrar_empleados import mostrar_todos_los_empleados
 
 main = Tk()
 
-main.title("DG S.A.")
-
 ############################ CENTRAR PANTALLA ######################################
-ancho_ventana = 700
-alto_ventana = 300
+def centrar_pantalla(ventana):
 
-x_ventana = main.winfo_screenwidth() // 2 - ancho_ventana // 2
-y_ventana = main.winfo_screenheight() // 2 - alto_ventana // 2
+    ancho_ventana = 700
+    alto_ventana = 300
 
-posicion = (
-    str(ancho_ventana)
-    + "x"
-    + str(alto_ventana)
-    + "+"
-    + str(x_ventana)
-    + "+"
-    + str(y_ventana)
-)
-main.geometry(posicion)
+    x_ventana = ventana.winfo_screenwidth() // 2 - ancho_ventana // 2
+    y_ventana = main.winfo_screenheight() // 2 - alto_ventana // 2
 
-# fontfamilylist = list(tkFont.families())
+    posicion = (
+        str(ancho_ventana)
+        + "x"
+        + str(alto_ventana)
+        + "+"
+        + str(x_ventana)
+        + "+"
+        + str(y_ventana)
+    )
+    ventana.geometry(posicion)
 
-# fontindex = 0
-
-############################ MENSAJE DE BIENVENIDA ######################################
-
-bienvenida = Label(
-    main,
-    text="Bienvenido/a al servicio de administración de empleados de DG S.A."
-    "\n\nSeleccione la opción que quiera realizar\n",
-)
-bienvenida.grid(row=0, column=2)
 
 ############################ VARIABLES ######################################
 var_nombre = StringVar()
@@ -65,8 +53,11 @@ crear_tabla(conexion)
 ############################ BOTONES ######################################
 
 
-def volver_al_menu():
-    pass
+def volver_al_menu(ventana):
+    global main
+    ventana.withdraw()
+    main = Toplevel()
+    menu_principal()
 
 
 """""" """""" """""" """""" """""" """""" """""" """""" """
@@ -75,11 +66,10 @@ def volver_al_menu():
 
 
 def dar_alta_empleado():
-    global posicion
     # El mensaje withdraw() cierra la ventana principal
     main.withdraw()
     ventana = Toplevel()
-    ventana.geometry(posicion)
+    centrar_pantalla(ventana)
 
     ingresar_datos = Label(ventana, text="Ingrese los datos del nuevo empleado")
     ingresar_datos.grid(row=0, column=1)
@@ -127,7 +117,7 @@ def dar_alta_empleado():
             else:
                 showwarning("Alta empleado", "Ya existe un empleado con ese DNI")
 
-    boton_salir = Button(ventana, text="Salir", command=volver_al_menu)
+    boton_salir = Button(ventana, text="Salir", command=lambda: volver_al_menu(ventana))
     boton_salir.grid(row=8, column=1)
 
     boton_insertar_empleado = Button(
@@ -136,22 +126,15 @@ def dar_alta_empleado():
     boton_insertar_empleado.grid(row=8, column=2)
 
 
-boton_alta_empleado = Button(
-    main, text="Dar de alta empleado", command=dar_alta_empleado
-)
-boton_alta_empleado.grid(row=1, column=1)
-
-
 """""" """""" """""" """""" """""" """""" """""" """""" """
                     BAJA EMPLEADO
 """ """""" """""" """""" """""" """""" """""" """""" """"""
 
 
 def dar_baja_empleado():
-    global posicion
     main.withdraw()
     ventana2 = Toplevel()
-    ventana2.geometry(posicion)
+    centrar_pantalla(ventana2)
 
     ingresar_id_baja = Label(ventana2, text="Ingrese el ID del empleado a dar de baja")
     ingresar_id_baja.grid(row=0, column=1)
@@ -168,7 +151,9 @@ def dar_baja_empleado():
             else:
                 showwarning("Alta empleado", "No existe un empleado con ese ID")
 
-    boton_salir2 = Button(ventana2, text="Salir", command=volver_al_menu)
+    boton_salir2 = Button(
+        ventana2, text="Salir", command=lambda: volver_al_menu(ventana2)
+    )
     boton_salir2.grid(row=1, column=1)
 
     boton_borrar_empleado = Button(
@@ -177,21 +162,15 @@ def dar_baja_empleado():
     boton_borrar_empleado.grid(row=1, column=2)
 
 
-boton_baja_empleado = Button(
-    main, text="Dar de baja empleado", command=dar_baja_empleado
-)
-boton_baja_empleado.grid(row=1, column=4)
-
 """""" """""" """""" """""" """""" """""" """""" """""" """
                 MODIFICAR EMPLEADO
 """ """""" """""" """""" """""" """""" """""" """""" """"""
 
 
 def modificar_empleado():
-    global posicion
     main.withdraw()
     ventana3 = Toplevel()
-    ventana3.geometry(posicion)
+    centrar_pantalla(ventana3)
 
     def busqueda_empleado():
         global conexion
@@ -199,11 +178,10 @@ def modificar_empleado():
         if not seleccionar(conexion, var_id.get(), main):
             showwarning("Modificación empleado", "No existe un empleado con ese ID")
         else:
-            global posicion
             nonlocal ventana3
             ventana3.withdraw()
             ventana4 = Toplevel()
-            ventana4.geometry(posicion)
+            centrar_pantalla(ventana4)
 
             ingresar_datos = Label(
                 ventana4, text="Ingrese los datos del empleado a modificar"
@@ -254,7 +232,9 @@ def modificar_empleado():
                             "El empleado se modificó correctamente",
                         )
 
-            boton_salir4 = Button(ventana4, text="Salir", command=volver_al_menu)
+            boton_salir4 = Button(
+                ventana4, text="Salir", command=lambda: volver_al_menu(ventana4)
+            )
             boton_salir4.grid(row=1, column=1)
 
             boton_modificacion_empleado = Button(
@@ -270,7 +250,9 @@ def modificar_empleado():
     entry_ingresar_id_modificacion = Entry(ventana3, textvariable=var_id)
     entry_ingresar_id_modificacion.grid(row=0, column=1)
 
-    boton_salir3 = Button(ventana3, text="Salir", command=volver_al_menu)
+    boton_salir3 = Button(
+        ventana3, text="Salir", command=lambda: volver_al_menu(ventana3)
+    )
 
     boton_modificar_empleado = Button(
         ventana3, text="Buscar empleado", command=busqueda_empleado
@@ -278,21 +260,15 @@ def modificar_empleado():
     boton_modificar_empleado.grid(row=3, column=0)
 
 
-boton_modificar_empleado = Button(
-    main, text="Modificar empleado", command=modificar_empleado
-)
-boton_modificar_empleado.grid(row=6, column=4)
-
 """""" """""" """""" """""" """""" """""" """""" """""" """
                 CONSULTAR EMPLEADO
 """ """""" """""" """""" """""" """""" """""" """""" """"""
 
 
 def consultar_empleado():
-    global posicion
     main.withdraw()
     ventana5 = Toplevel()
-    ventana5.geometry(posicion)
+    centrar_pantalla(ventana5)
 
     ingresar_id_consulta = Label(
         ventana5, text="Ingrese el ID del empleado a consultar"
@@ -308,7 +284,9 @@ def consultar_empleado():
         if not seleccionar(conexion, var_id.get(), ventana5):
             showwarning("Consulta empleado", "No existe un empleado con ese ID")
 
-    boton_salir5 = Button(ventana5, text="Salir", command=volver_al_menu)
+    boton_salir5 = Button(
+        ventana5, text="Salir", command=lambda: volver_al_menu(ventana5)
+    )
     boton_salir5.grid(row=1, column=1)
 
     boton_consulta_empleado = Button(
@@ -316,11 +294,6 @@ def consultar_empleado():
     )
     boton_consulta_empleado.grid(row=3, column=0)
 
-
-boton_consultar_empleado = Button(
-    main, text="Consultar empleado", command=consultar_empleado
-)
-boton_consultar_empleado.grid(row=6, column=1)
 
 """""" """""" """""" """""" """""" """""" """""" """""" """""" """""" """
                 MOSTRAR TODOS LOS EMPLEADOS
@@ -331,10 +304,9 @@ def mostrar_empleados():
     mostrar_todos_los_empleados(conexion, main)
 
 
-boton_mostrar_empleados = Button(
-    main, text="Mostrar todos los empleados", command=mostrar_empleados
-)
-boton_mostrar_empleados.grid(row=4, column=2, columnspan=2)
+boton_salir6 = Button(main, text="Salir", command=lambda: volver_al_menu(main))
+boton_salir6.grid(row=1, column=1)
+
 
 ############################ MENU ######################################
 
@@ -354,5 +326,44 @@ menu_formato.add_command(label="Salir", command=main.quit)
 menubar.add_cascade(label="Formato", menu=menu_formato)
 
 main.config(menu=menubar)
+
+############################ MENU PRINCIPAL ######################################
+def menu_principal():
+    main.title("DG S.A.")
+    bienvenida = Label(
+        main,
+        text="Bienvenido/a al servicio de administración de empleados de DG S.A."
+        "\n\nSeleccione la opción que quiera realizar\n",
+    )
+    centrar_pantalla(main)
+    bienvenida.grid(row=0, column=2)
+
+    boton_alta_empleado = Button(
+        main, text="Dar de alta empleado", command=dar_alta_empleado
+    )
+    boton_alta_empleado.grid(row=1, column=1)
+
+    boton_baja_empleado = Button(
+        main, text="Dar de baja empleado", command=dar_baja_empleado
+    )
+    boton_baja_empleado.grid(row=1, column=4)
+
+    boton_modificar_empleado = Button(
+        main, text="Modificar empleado", command=modificar_empleado
+    )
+    boton_modificar_empleado.grid(row=6, column=4)
+
+    boton_mostrar_empleados = Button(
+        main, text="Mostrar todos los empleados", command=mostrar_empleados
+    )
+    boton_mostrar_empleados.grid(row=4, column=2, columnspan=2)
+
+    boton_consultar_empleado = Button(
+        main, text="Consultar empleado", command=consultar_empleado
+    )
+    boton_consultar_empleado.grid(row=6, column=1)
+
+
+menu_principal()
 
 main.mainloop()
