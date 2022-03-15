@@ -13,27 +13,6 @@ from app_crud.mostrar_empleados import mostrar_todos_los_empleados
 
 main = Tk()
 
-############################ CENTRAR PANTALLA ######################################
-def centrar_pantalla(ventana):
-
-    ancho_ventana = 700
-    alto_ventana = 300
-
-    x_ventana = ventana.winfo_screenwidth() // 2 - ancho_ventana // 2
-    y_ventana = main.winfo_screenheight() // 2 - alto_ventana // 2
-
-    posicion = (
-        str(ancho_ventana)
-        + "x"
-        + str(alto_ventana)
-        + "+"
-        + str(x_ventana)
-        + "+"
-        + str(y_ventana)
-    )
-    ventana.geometry(posicion)
-
-
 ############################ VARIABLES ######################################
 var_nombre = StringVar()
 var_apellido = StringVar()

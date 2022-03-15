@@ -1,13 +1,9 @@
 import sqlite3
+from app_crud.funciones_aux import existe_empleado
 
 
 def borrar(conexion, mi_id):
-    cursor = conexion.cursor()
-    mi_id = int(mi_id)
-    data = (mi_id,)
-    sql_id = "SELECT * FROM empleados WHERE id = ?;"
-    cursor.execute(sql_id, data)
-    resultado_query = cursor.fetchone()
+    resultado_query = existe_empleado(conexion, mi_id)
 
     if resultado_query is not None:
         sql = "DELETE from empleados where id = ?;"
