@@ -26,23 +26,22 @@ def armar_tree_view(conexion, ventana):
     )
 
 
-def existe_empleado(conexion, mi_id):
+def existe_empleado(conexion, dato, query):
     cursor = conexion.cursor()
-    mi_id = int(mi_id)
-    data = (mi_id,)
-    sql_id = "SELECT * FROM empleados WHERE id = ?;"
-    cursor.execute(sql_id, data)
+    dato = int(dato)
+    data = (dato,)
+    sql = query
+    cursor.execute(sql, data)
     return cursor.fetchone()
 
 
-############################ CENTRAR PANTALLA ######################################
 def centrar_pantalla(ventana):
 
     ancho_ventana = 700
     alto_ventana = 300
 
     x_ventana = ventana.winfo_screenwidth() // 2 - ancho_ventana // 2
-    y_ventana = main.winfo_screenheight() // 2 - alto_ventana // 2
+    y_ventana = ventana.winfo_screenheight() // 2 - alto_ventana // 2
 
     posicion = (
         str(ancho_ventana)

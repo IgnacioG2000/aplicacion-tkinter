@@ -2,11 +2,9 @@ import sqlite3
 
 
 def insertar(conexion, nombre, apellido, direccion, dni, telefono):
-    cursor = conexion.cursor()
-    data = (dni,)
-    sql_id = "SELECT COUNT(*) FROM empleados WHERE dni = ?;"
-    cursor.execute(sql_id, data)
-    resultado_query = cursor.fetchone()
+    resultado_query = existe_empleado(
+        conexion, dni, "SELECT * FROM empleados WHERE dni = ?;"
+    )
 
     if resultado_query is not None:
         data_a_dar_alta = (nombre, apellido, direccion, dni, telefono)

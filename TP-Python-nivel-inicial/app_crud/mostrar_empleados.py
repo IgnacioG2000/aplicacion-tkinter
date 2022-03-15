@@ -1,8 +1,7 @@
 import sqlite3
 from tkinter import ttk
 from tkinter import *
-from funciones_aux import centrar_pantalla
-from tabla_empleados import armar_tree_view
+from funciones_aux import centrar_pantalla, armar_tree_view
 
 
 def mostrar_todos_los_empleados(conexion, ventana):
