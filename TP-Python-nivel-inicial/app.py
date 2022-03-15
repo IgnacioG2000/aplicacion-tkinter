@@ -8,6 +8,7 @@ from app_crud.borrar_empleado import borrar
 from app_crud.consultar_empleado import seleccionar
 from app_crud.actualizar_empleado import actualizar
 from app_crud.mostrar_empleados import mostrar_todos_los_empleados
+from app_crud.funciones_aux import centrar_pantalla
 
 # import tkinter.font as tkFont
 
@@ -31,7 +32,7 @@ crear_tabla(conexion)
 
 ############################ BOTONES ######################################
 
-
+# Funcion global porque hay 4 botones que hacen lo mismo
 def volver_al_menu(ventana):
     global main
     ventana.withdraw()
@@ -287,7 +288,7 @@ boton_salir6 = Button(main, text="Salir", command=lambda: volver_al_menu(main))
 boton_salir6.grid(row=1, column=1)
 
 
-############################ MENU ######################################
+############################ MENU DESPLEGABLE ######################################
 
 
 def color():

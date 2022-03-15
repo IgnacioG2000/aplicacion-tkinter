@@ -1,5 +1,5 @@
 import sqlite3
-from funciones_aux import armar_tree_view, existe_empleado
+from app_crud.funciones_aux import armar_tree_view, existe_empleado
 
 
 def seleccionar(conexion, mi_id, ventana):
@@ -8,7 +8,7 @@ def seleccionar(conexion, mi_id, ventana):
     )
 
     if resultado_query is not None:
-        armar_tree_view(conexion, ventana)
+        armar_tree_view(conexion, ventana, resultado_query)
         return True
     else:
         return False

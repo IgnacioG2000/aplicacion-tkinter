@@ -1,8 +1,9 @@
 import sqlite3
 from tkinter import ttk
+from tkinter import *
 
 
-def armar_tree_view(conexion, ventana):
+def armar_tree_view(conexion, ventana, rows):
     tree = ttk.Treeview(ventana)
     tree["columns"] = ("col1", "col2", "col3", "col4", "col5")
     tree.column("#0", width=30, minwidth=30, anchor=CENTER)
@@ -19,11 +20,12 @@ def armar_tree_view(conexion, ventana):
     tree.heading("col4", text="dni", anchor=CENTER)
     tree.heading("col5", text="Telefono", anchor=CENTER)
 
-    tree.grid(column=1, row=4, columnspan=5)
+    tree.grid(column=1, row=12, columnspan=5)
 
-    tree.insert(
-        "", END, text=rows[0], values=(rows[1], rows[2], rows[3], rows[4], rows[5])
-    )
+    for row in rows:
+        tree.insert(
+            "", END, text=row[0], values=(row[1], row[2], row[3], row[4], row[5])
+        )
 
 
 def existe_empleado(conexion, dato, query):
