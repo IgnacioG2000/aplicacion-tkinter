@@ -56,10 +56,13 @@ def menu_desplegable(ventana):
 
 # Funcion global porque hay 4 botones que hacen lo mismo
 def volver_al_menu(ventana):
-    global main
-    ventana.withdraw()
-    main = Toplevel()
-    menu_principal()
+    if askyesno("Menú principal", "¿Seguro quiere volver al menú principal?"):
+        global main
+        ventana.withdraw()
+        ventana.resizable(False, False)
+        main = Toplevel()
+        menu_principal()
+        menu_desplegable(main)
 
 
 """""" """""" """""" """""" """""" """""" """""" """""" """
@@ -141,7 +144,7 @@ def dar_baja_empleado():
     centrar_pantalla(ventana2)
 
     ingresar_id_baja = Label(ventana2, text="Ingrese el ID del empleado a dar de baja")
-    ingresar_id_baja.grid(row=0, column=1)
+    ingresar_id_baja.grid(row=0, column=1, padx=100, pady=150)
     entry_ingresar_id_baja = Entry(ventana2, textvariable=var_id)
     entry_ingresar_id_baja.grid(row=0, column=2)
 
@@ -191,7 +194,7 @@ def modificar_empleado():
             ingresar_datos = Label(
                 ventana4, text="Ingrese los datos del empleado a modificar"
             )
-            ingresar_datos.grid(row=0, column=1)
+            ingresar_datos.grid(row=0, column=2)
 
             nombre = Label(ventana4, text="Nombre")
             nombre.grid(row=2, column=1, sticky=W)
@@ -240,17 +243,17 @@ def modificar_empleado():
             boton_salir4 = Button(
                 ventana4, text="Salir", command=lambda: volver_al_menu(ventana4)
             )
-            boton_salir4.grid(row=1, column=1)
+            boton_salir4.grid(row=7, column=1)
 
             boton_modificacion_empleado = Button(
                 ventana4, text="Modificar empleado", command=editar_empleado
             )
-            boton_modificacion_empleado.grid(row=1, column=2)
+            boton_modificacion_empleado.grid(row=7, column=2)
 
     ingresar_id_modificacion = Label(
         ventana3, text="Ingrese el ID del empleado a modificar"
     )
-    ingresar_id_modificacion.grid(row=0, column=0)
+    ingresar_id_modificacion.grid(row=0, column=0, padx=100, pady=150)
 
     entry_ingresar_id_modificacion = Entry(ventana3, textvariable=var_id)
     entry_ingresar_id_modificacion.grid(row=0, column=1)
@@ -258,11 +261,12 @@ def modificar_empleado():
     boton_salir3 = Button(
         ventana3, text="Salir", command=lambda: volver_al_menu(ventana3)
     )
+    boton_salir3.grid(row=3, column=0)
 
     boton_modificar_empleado = Button(
         ventana3, text="Buscar empleado", command=busqueda_empleado
     )
-    boton_modificar_empleado.grid(row=3, column=0)
+    boton_modificar_empleado.grid(row=3, column=1)
 
 
 """""" """""" """""" """""" """""" """""" """""" """""" """
@@ -318,6 +322,7 @@ def menu_principal():
         text="Bienvenido/a al servicio de administración de empleados de DG S.A."
         "\n\nSeleccione la opción que quiera realizar\n",
     )
+    main.resizable(False, False)
     centrar_pantalla(main)
     bienvenida.grid(row=0, column=2)
 

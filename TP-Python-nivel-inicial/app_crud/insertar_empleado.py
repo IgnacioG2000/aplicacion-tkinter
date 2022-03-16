@@ -1,4 +1,5 @@
 import sqlite3
+from extras.funciones_aux import existe_empleado
 
 
 def insertar(conexion, nombre, apellido, direccion, dni, telefono):
@@ -6,7 +7,8 @@ def insertar(conexion, nombre, apellido, direccion, dni, telefono):
         conexion, dni, "SELECT * FROM empleados WHERE dni = ?;"
     )
 
-    if len(resultado_query) != 0:
+    if len(resultado_query) == 0:
+        cursor = conexion.cursor()
         data_a_dar_alta = (nombre, apellido, direccion, dni, telefono)
         sql = "INSERT INTO empleados(nombre, apellido, direccion, dni, telefono) \
             VALUES(?, ?, ?, ?, ?)"

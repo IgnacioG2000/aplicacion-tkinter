@@ -20,7 +20,7 @@ def armar_tree_view(conexion, ventana, rows):
     tree.heading("col4", text="DNI", anchor=CENTER)
     tree.heading("col5", text="Teléfono", anchor=CENTER)
 
-    tree.grid(column=1, row=4, columnspan=5, rowspan=2)
+    tree.grid(column=0, row=4, columnspan=5, rowspan=2)
 
     for row in rows:
         tree.insert(
@@ -55,3 +55,4 @@ def centrar_pantalla(ventana):
         + str(y_ventana)
     )
     ventana.geometry(posicion)
+    ventana.resizable(False, False)
