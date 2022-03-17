@@ -1,4 +1,3 @@
-import sqlite3
 from tkinter.messagebox import *
 from extras.funciones_aux import centrar_pantalla, armar_tree_view
 

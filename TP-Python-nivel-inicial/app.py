@@ -10,11 +10,9 @@ from app_crud.actualizar_empleado import actualizar
 from app_crud.mostrar_empleados import mostrar_todos_los_empleados
 from extras.funciones_aux import centrar_pantalla
 
-# import tkinter.font as tkFont
-
 main = Tk()
 
-############################ VARIABLES ######################################
+# VARIABLES#
 var_nombre = StringVar()
 var_apellido = StringVar()
 var_direccion = StringVar()
@@ -22,15 +20,15 @@ var_dni = IntVar()
 var_telefono = IntVar()
 var_id = IntVar()
 
-############################ CREAR BASE DE DATOS ######################################
+# CREAR BASE DE DATOS#
 
 conexion = crear_base()
 
-############################ CREAR TABLA ######################################
+# CREAR TABLA#
 
 crear_tabla(conexion)
 
-############################ MENU DESPLEGABLE ######################################
+# MENU DESPLEGABLE#
 
 
 def color(ventana):
@@ -52,11 +50,13 @@ def menu_desplegable(ventana):
     ventana.config(menu=menubar)
 
 
-############################ BOTONES ######################################
+# BOTONES#
 
 # Funcion global porque hay 4 botones que hacen lo mismo
 def volver_al_menu(ventana):
     if askyesno("Menú principal", "¿Seguro quiere volver al menú principal?"):
+        # Recibo el main global debido a que no lo quiero local de esa funcion,
+        # quiero modificar el main posta.
         global main
         ventana.withdraw()
         ventana.resizable(False, False)
@@ -314,7 +314,7 @@ def mostrar_empleados():
     mostrar_todos_los_empleados(conexion, main)
 
 
-############################ MENU PRINCIPAL ######################################
+# MENU PRINCIPAL#
 def menu_principal():
     main.title("DG S.A.")
     bienvenida = Label(

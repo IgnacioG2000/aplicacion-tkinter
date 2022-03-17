@@ -1,4 +1,3 @@
-import sqlite3
 from extras.funciones_aux import existe_empleado
 
 

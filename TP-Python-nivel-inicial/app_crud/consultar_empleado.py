@@ -1,4 +1,3 @@
-import sqlite3
 from extras.funciones_aux import armar_tree_view, existe_empleado
 
 
