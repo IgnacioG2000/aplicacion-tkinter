@@ -1,5 +1,5 @@
-from tkinter.messagebox import *
-from extras.funciones_aux import centrar_pantalla, armar_tree_view
+from tkinter.messagebox import showwarning
+from extras.funciones_aux import armar_tree_view
 
 
 def mostrar_todos_los_empleados(conexion, ventana):

@@ -1,6 +1,5 @@
-import sqlite3
-from tkinter import ttk
-from tkinter import *
+from tkinter import ttk, END
+from tkinter import CENTER
 
 
 def armar_tree_view(conexion, ventana, rows):
@@ -22,10 +21,8 @@ def armar_tree_view(conexion, ventana, rows):
 
     tree.grid(column=0, row=4, columnspan=5, rowspan=2)
 
-    for row in rows:
-        tree.insert(
-            "", END, text=row[0], values=(row[1], row[2], row[3], row[4], row[5])
-        )
+    for i in rows:
+        tree.insert("", END, text=i[0], values=(i[1], i[2], i[3], i[4], i[5]))
 
 
 def existe_empleado(conexion, dato, query):
