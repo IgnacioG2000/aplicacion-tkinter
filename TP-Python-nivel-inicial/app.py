@@ -133,7 +133,7 @@ def dar_alta_empleado():
     boton_salir.grid(row=8, column=1)
 
     boton_insertar_empleado = tk.Button(
-        ventana, text="Dar de alta empleado", command=alta_empleado
+        ventana, text="Registrar empleado", command=alta_empleado
     )
     boton_insertar_empleado.grid(row=8, column=2)
 
@@ -175,7 +175,7 @@ def dar_baja_empleado():
     boton_salir2.grid(row=1, column=1)
 
     boton_borrar_empleado = tk.Button(
-        ventana2, text="Dar de baja empleado", command=baja_empleado
+        ventana2, text="Eliminar empleado", command=baja_empleado
     )
     boton_borrar_empleado.grid(row=1, column=2)
 
@@ -236,8 +236,7 @@ def modificar_empleado():
                 global conexion
                 if askyesno(
                     "Modificar empleado",
-                    "¿Seguro quiere modificar este \
-                     empleado?",
+                    "¿Seguro quiere modificar este empleado?",
                 ):
                     if actualizar(
                         conexion,
@@ -259,7 +258,7 @@ def modificar_empleado():
             boton_salir4.grid(row=7, column=1)
 
             boton_modificacion_empleado = tk.Button(
-                ventana4, text="Modificar empleado", command=editar_empleado
+                ventana4, text="Editar empleado", command=editar_empleado
             )
             boton_modificacion_empleado.grid(row=7, column=2)
 
@@ -316,7 +315,7 @@ def consultar_empleado():
     boton_salir5.grid(row=1, column=0)
 
     boton_consulta_empleado = tk.Button(
-        ventana5, text="Buscar empleado", command=consultar_empleado
+        ventana5, text="Mostrar empleado", command=consultar_empleado
     )
     boton_consulta_empleado.grid(row=1, column=1)
 
