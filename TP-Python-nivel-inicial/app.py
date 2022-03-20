@@ -15,7 +15,7 @@ from extras.funciones_aux import centrar_pantalla
 main = tk.Tk()
 
 # ----------------------------------------------------------------------------
-#                                  VARIABLES
+#                                   VARIABLES
 # ----------------------------------------------------------------------------
 
 var_nombre = tk.StringVar()
@@ -94,32 +94,32 @@ def dar_alta_empleado():
         ventana,
         text="Ingrese los datos del nuevo empleado",
     )
-    ingresar_datos.grid(row=0, column=1)
+    ingresar_datos.grid(row=0, column=1, pady=50)
 
     nombre = tk.Label(ventana, text="Nombre")
-    nombre.grid(row=2, column=1, sticky=W)
+    nombre.grid(row=1, column=1, padx=150, pady=5, sticky=W)
     entry_nombre = tk.Entry(ventana, textvariable=var_nombre)
-    entry_nombre.grid(row=2, column=2)
+    entry_nombre.grid(row=1, column=2)
 
     apellido = tk.Label(ventana, text="Apellido")
-    apellido.grid(row=3, column=1, sticky=W)
+    apellido.grid(row=2, column=1, padx=150, pady=5, sticky=W)
     entry_apellido = tk.Entry(ventana, textvariable=var_apellido)
-    entry_apellido.grid(row=3, column=2)
+    entry_apellido.grid(row=2, column=2)
 
     direccion = tk.Label(ventana, text="Dirección")
-    direccion.grid(row=4, column=1, sticky=W)
+    direccion.grid(row=3, column=1, padx=150, pady=5, sticky=W)
     entry_direccion = tk.Entry(ventana, textvariable=var_direccion)
-    entry_direccion.grid(row=4, column=2)
+    entry_direccion.grid(row=3, column=2)
 
     dni = tk.Label(ventana, text="DNI")
-    dni.grid(row=5, column=1, sticky=W)
+    dni.grid(row=4, column=1, padx=150, pady=5, sticky=W)
     entry_dni = tk.Entry(ventana, textvariable=var_dni)
-    entry_dni.grid(row=5, column=2)
+    entry_dni.grid(row=4, column=2)
 
     telefono = tk.Label(ventana, text="Teléfono")
-    telefono.grid(row=6, column=1, sticky=W)
+    telefono.grid(row=5, column=1, padx=150, pady=5, sticky=W)
     entry_telefono = tk.Entry(ventana, textvariable=var_telefono)
-    entry_telefono.grid(row=6, column=2)
+    entry_telefono.grid(row=5, column=2)
 
     def alta_empleado():
         global conexion
@@ -142,12 +142,12 @@ def dar_alta_empleado():
     boton_salir = tk.Button(
         ventana, text="Salir", command=lambda: volver_al_menu(ventana)
     )
-    boton_salir.grid(row=8, column=1)
+    boton_salir.grid(row=6, column=1, pady=30)
 
     boton_insertar_empleado = tk.Button(
         ventana, text="Registrar empleado", command=alta_empleado
     )
-    boton_insertar_empleado.grid(row=8, column=2)
+    boton_insertar_empleado.grid(row=6, column=2, pady=30)
 
 
 """""" """""" """""" """""" """""" """""" """""" """""" """
@@ -217,30 +217,30 @@ def modificar_empleado():
             ingresar_datos = tk.Label(
                 ventana4, text="Ingrese los datos del empleado a modificar"
             )
-            ingresar_datos.grid(row=0, column=2)
+            ingresar_datos.grid(row=0, column=1, pady=50)
 
             nombre = tk.Label(ventana4, text="Nombre")
-            nombre.grid(row=2, column=1, sticky=W)
+            nombre.grid(row=2, column=1, padx=150, pady=5, sticky=W)
             entry_nombre = tk.Entry(ventana4, textvariable=var_nombre)
             entry_nombre.grid(row=2, column=2)
 
             apellido = tk.Label(ventana4, text="Apellido")
-            apellido.grid(row=3, column=1, sticky=W)
+            apellido.grid(row=3, column=1, padx=150, pady=5, sticky=W)
             entry_apellido = tk.Entry(ventana4, textvariable=var_apellido)
             entry_apellido.grid(row=3, column=2)
 
             direccion = tk.Label(ventana4, text="Direccion")
-            direccion.grid(row=4, column=1, sticky=W)
+            direccion.grid(row=4, column=1, padx=150, pady=5, sticky=W)
             entry_direccion = tk.Entry(ventana4, textvariable=var_direccion)
             entry_direccion.grid(row=4, column=2)
 
             dni = tk.Label(ventana4, text="DNI")
-            dni.grid(row=5, column=1, sticky=W)
+            dni.grid(row=5, column=1, padx=150, pady=5, sticky=W)
             entry_dni = tk.Entry(ventana4, textvariable=var_dni)
             entry_dni.grid(row=5, column=2)
 
             telefono = tk.Label(ventana4, text="Teléfono")
-            telefono.grid(row=6, column=1, sticky=W)
+            telefono.grid(row=6, column=1, padx=150, pady=5, sticky=W)
             entry_telefono = tk.Entry(ventana4, textvariable=var_telefono)
             entry_telefono.grid(row=6, column=2)
 
@@ -267,12 +267,12 @@ def modificar_empleado():
             boton_salir4 = tk.Button(
                 ventana4, text="Salir", command=lambda: volver_al_menu(ventana4)
             )
-            boton_salir4.grid(row=7, column=1)
+            boton_salir4.grid(row=7, column=1, pady=30)
 
             boton_modificacion_empleado = tk.Button(
                 ventana4, text="Editar empleado", command=editar_empleado
             )
-            boton_modificacion_empleado.grid(row=7, column=2)
+            boton_modificacion_empleado.grid(row=7, column=2, pady=30)
 
     ingresar_id_modificacion = tk.Label(
         ventana3, text="Ingrese el ID del empleado a modificar"
