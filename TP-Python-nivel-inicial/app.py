@@ -11,9 +11,13 @@ from app_crud.actualizar_empleado import actualizar
 from app_crud.mostrar_empleados import mostrar_todos_los_empleados
 from extras.funciones_aux import centrar_pantalla
 
+
 main = tk.Tk()
 
-# VARIABLES#
+# ----------------------------------------------------------------------------
+#                                  VARIABLES
+# ----------------------------------------------------------------------------
+
 var_nombre = tk.StringVar()
 var_apellido = tk.StringVar()
 var_direccion = tk.StringVar()
@@ -21,15 +25,21 @@ var_dni = tk.IntVar()
 var_telefono = tk.IntVar()
 var_id = tk.IntVar()
 
-# CREAR BASE DE DATOS#
+# ----------------------------------------------------------------------------
+#                              CREAR BASE DE DATOS
+# ----------------------------------------------------------------------------
 
 conexion = crear_base()
 
-# CREAR TABLA#
+# ----------------------------------------------------------------------------
+#                                 CREAR TABLA
+# ----------------------------------------------------------------------------
 
 crear_tabla(conexion)
 
-# MENU DESPLEGABLE#
+# ----------------------------------------------------------------------------
+#                               MENU DESPLEGABLE
+# ----------------------------------------------------------------------------
 
 
 def color(ventana):
@@ -51,7 +61,9 @@ def menu_desplegable(ventana):
     ventana.config(menu=menubar)
 
 
-# BOTONES#
+# ----------------------------------------------------------------------------
+#                                  BOTONES
+# ----------------------------------------------------------------------------
 
 # Funcion global porque hay 4 botones que hacen lo mismo
 def volver_al_menu(ventana):
@@ -329,7 +341,9 @@ def mostrar_empleados():
     mostrar_todos_los_empleados(conexion, main)
 
 
-# MENU PRINCIPAL#
+# ----------------------------------------------------------------------------
+#                               MENU PRINCIPAL
+# ----------------------------------------------------------------------------
 def menu_principal():
     main.title("DG S.A.")
     bienvenida = tk.Label(
