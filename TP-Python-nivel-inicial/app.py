@@ -1,6 +1,7 @@
 import tkinter as tk
+import re
 from tkinter import W
-from tkinter.messagebox import askyesno, showinfo, showwarning
+from tkinter.messagebox import askyesno, showinfo, showwarning, showerror
 from tkinter.colorchooser import askcolor
 from app_crud.sql_crud.creacion_bd import crear_base
 from app_crud.sql_crud.creacion_tabla import crear_tabla
@@ -23,7 +24,13 @@ var_apellido = tk.StringVar()
 var_direccion = tk.StringVar()
 var_dni = tk.IntVar()
 var_telefono = tk.IntVar()
-var_id = tk.IntVar()
+var_id = tk.StringVar()
+
+# ----------------------------------------------------------------------------
+#                              PATRON PARA REGEX
+# ----------------------------------------------------------------------------
+
+patron_numerico = "[0-9]"
 
 # ----------------------------------------------------------------------------
 #                              CREAR BASE DE DATOS
@@ -206,8 +213,10 @@ def modificar_empleado():
     def busqueda_empleado():
         global conexion
 
-        if not seleccionar(conexion, var_id.get(), main):
-            showwarning("Edición empleado", "No hay un empleado con ese ID")
+        if not re.match(patron_numerico, var_id.get()):
+            showerror("Modificación empleado", "Por favor ingrese un número")
+        elif not seleccionar(conexion, var_id.get(), main):
+            showwarning("Modificación empleado", "No hay un empleado con ese ID")
         else:
             nonlocal ventana3
             ventana3.withdraw()
@@ -315,7 +324,10 @@ def consultar_empleado():
     def consultar_empleado():
         global conexion
         nonlocal ventana5
-        if not seleccionar(conexion, var_id.get(), ventana5):
+
+        if not re.match(patron_numerico, var_id.get()):
+            showerror("Modificación empleado", "Por favor ingrese un número")
+        elif not seleccionar(conexion, var_id.get(), ventana5):
             showwarning(
                 "Consulta empleado",
                 "No existe un empleado con ese ID",
