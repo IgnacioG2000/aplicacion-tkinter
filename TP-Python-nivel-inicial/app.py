@@ -30,7 +30,7 @@ var_id = tk.StringVar()
 #                              PATRON PARA REGEX
 # ----------------------------------------------------------------------------
 
-patron_numerico = "\d"
+patron_numerico = "[0-9]"
 patron_alfabetico = "[A-Z], flags = re.I"
 
 # ----------------------------------------------------------------------------
@@ -259,7 +259,8 @@ def modificar_empleado():
 
                 if not re.match(patron_alfabetico, var_nombre.get()):
                     showerror(
-                        "Alta empleado", "Por favor, en el nombre ingrese solo letras"
+                        "Modificación empleado",
+                        "Por favor, en el nombre ingrese solo letras",
                     )
                 else:
                     if askyesno(
