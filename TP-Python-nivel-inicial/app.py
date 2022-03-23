@@ -334,7 +334,7 @@ def consultar_empleado():
         nonlocal ventana5
 
         if not re.match(patron_numerico, var_id.get()):
-            showerror("Modificación empleado", "Por favor ingrese un número")
+            showerror("Consulta empleado", "Por favor ingrese un número")
         elif not seleccionar(conexion, var_id.get(), ventana5):
             showwarning(
                 "Consulta empleado",
