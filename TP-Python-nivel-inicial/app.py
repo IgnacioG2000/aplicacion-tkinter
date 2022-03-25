@@ -31,7 +31,6 @@ var_id = tk.StringVar()
 # ----------------------------------------------------------------------------
 
 patron_numerico = "[0-9]"
-patron_alfabetico = "[A-Z], flags = re.I"
 
 # ----------------------------------------------------------------------------
 #                              CREAR BASE DE DATOS
@@ -131,21 +130,18 @@ def dar_alta_empleado():
 
     def alta_empleado():
         global conexion
-        if not re.match(patron_alfabetico, var_nombre.get()):
-            showerror("Alta empleado", "Por favor, en el nombre ingrese solo letras")
-        else:
-            if askyesno("Alta empleado", "¿Seguro quiere dar de alta este empleado?"):
-                if insertar(
-                    conexion,
-                    var_nombre.get(),
-                    var_apellido.get(),
-                    var_direccion.get(),
-                    var_dni.get(),
-                    var_telefono.get(),
-                ):
-                    showinfo("Alta empleado", "El empleado se dio de alta")
-                else:
-                    showwarning("Alta empleado", "Ya está registrado ese DNI")
+        if askyesno("Alta empleado", "¿Seguro quiere dar de alta este empleado?"):
+            if insertar(
+                conexion,
+                var_nombre.get(),
+                var_apellido.get(),
+                var_direccion.get(),
+                var_dni.get(),
+                var_telefono.get(),
+            ):
+                showinfo("Alta empleado", "El empleado se dio de alta")
+            else:
+                showwarning("Alta empleado", "Ya está registrado ese DNI")
 
     boton_salir = tk.Button(
         ventana, text="Salir", command=lambda: volver_al_menu(ventana)
@@ -178,16 +174,19 @@ def dar_baja_empleado():
 
     def baja_empleado():
         global conexion
-        if askyesno(
-            "Dar de baja empleado", "¿Seguro quiere dar de baja este empleado?"
-        ):
-            if borrar(conexion, var_id.get()):
-                showinfo("Baja empleado", "El empleado se dio de baja")
-            else:
-                showwarning(
-                    "Baja empleado",
-                    "No existe un empleado con ese ID",
-                )
+        if not re.match(patron_numerico, var_id.get()):
+            showerror("Modificación empleado", "Por favor ingrese un número")
+        else:
+            if askyesno(
+                "Dar de baja empleado", "¿Seguro quiere dar de baja este empleado?"
+            ):
+                if borrar(conexion, var_id.get()):
+                    showinfo("Baja empleado", "El empleado se dio de baja")
+                else:
+                    showwarning(
+                        "Baja empleado",
+                        "No existe un empleado con ese ID",
+                    )
 
     boton_salir2 = tk.Button(
         ventana2, text="Salir", command=lambda: volver_al_menu(ventana2)
@@ -256,30 +255,23 @@ def modificar_empleado():
 
             def editar_empleado():
                 global conexion
-
-                if not re.match(patron_alfabetico, var_nombre.get()):
-                    showerror(
-                        "Modificación empleado",
-                        "Por favor, en el nombre ingrese solo letras",
-                    )
-                else:
-                    if askyesno(
-                        "Modificar empleado",
-                        "¿Seguro quiere modificar este empleado?",
+                if askyesno(
+                    "Modificar empleado",
+                    "¿Seguro quiere modificar este empleado?",
+                ):
+                    if actualizar(
+                        conexion,
+                        var_id.get(),
+                        var_nombre.get(),
+                        var_apellido.get(),
+                        var_direccion.get(),
+                        var_dni.get(),
+                        var_telefono.get(),
                     ):
-                        if actualizar(
-                            conexion,
-                            var_id.get(),
-                            var_nombre.get(),
-                            var_apellido.get(),
-                            var_direccion.get(),
-                            var_dni.get(),
-                            var_telefono.get(),
-                        ):
-                            showinfo(
-                                "Modificación empleado",
-                                "El empleado se modificó correctamente",
-                            )
+                        showinfo(
+                            "Modificación empleado",
+                            "El empleado se modificó correctamente",
+                        )
 
             boton_salir4 = tk.Button(
                 ventana4, text="Salir", command=lambda: volver_al_menu(ventana4)
