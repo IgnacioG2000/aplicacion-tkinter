@@ -175,11 +175,9 @@ def dar_baja_empleado():
     def baja_empleado():
         global conexion
         if not re.match(patron_numerico, var_id.get()):
-            showerror("Modificación empleado", "Por favor ingrese un número")
+            showerror("Baja empleado", "Por favor ingrese un número")
         else:
-            if askyesno(
-                "Dar de baja empleado", "¿Seguro quiere dar de baja este empleado?"
-            ):
+            if askyesno("Baja empleado", "¿Seguro quiere dar de baja este empleado?"):
                 if borrar(conexion, var_id.get()):
                     showinfo("Baja empleado", "El empleado se dio de baja")
                 else:
@@ -256,7 +254,7 @@ def modificar_empleado():
             def editar_empleado():
                 global conexion
                 if askyesno(
-                    "Modificar empleado",
+                    "Modificación empleado",
                     "¿Seguro quiere modificar este empleado?",
                 ):
                     if actualizar(
